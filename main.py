@@ -14,6 +14,9 @@ from .dockwidget import UP42DockWidget
 from .settings import Settings
 
 
+PLUGIN_NAME="UP42"
+
+
 class UP42Plugin:
     """ The main class defining the high-level plugin logic and interactions with UI
 

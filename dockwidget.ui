@@ -184,7 +184,10 @@
            </widget>
           </item>
          </layout>
-        </widget>        
+        </widget>
+        <widget class="QWidget" name="configTab">
+         <attribute name="title"><string>Configuration</string></attribute>
+        </widget>
        </widget>
       </item>
      </layout>

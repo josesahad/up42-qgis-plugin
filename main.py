@@ -32,6 +32,20 @@ class UP42Plugin:
 
     # ICON_PATH = ':/plugins/UP42/favicon.ico'
 
+    def download_layer(self):
+        """ Uploads an image into QGis
+        """
+        path_image = "/Users/thais.bendixen/Desktop/2e18f92e-ec90-4517-ab31-eda7a3019715_ms.tif"
+
+        # get the path to a tif file  e.g. /home/project/data/srtm.tif
+        path_to_tif = path_image
+        output_layer = QgsRasterLayer(path_to_tif, "SRTM layer name")
+        if not output_layer.isValid():
+            print("Layer failed to load!")
+
+        QgsProject.instance().addMapLayer(output_layer)
+
+
     def __init__(self, iface):
         """ Called by QGIS at the beginning when you open QGIS or when the plugin is enabled in the
         Plugin Manager.
@@ -91,6 +105,7 @@ class UP42Plugin:
         self.dockwidget = UP42DockWidget()
         self.dockwidget.setWindowTitle('{} plugin v{}'.format("UP42", "1.0.0"))
         self.initialize_ui()
+        self.dockwidget.downloadJobPushButton.clicked.connect(self.download_layer)
 
         # Login widget
         # self.dockwidget.serviceUrlLineEdit.editingFinished.connect(self.validate_base_url)

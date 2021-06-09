@@ -38,8 +38,60 @@
          </sizepolicy>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>1</number>
         </property>
+
+        <widget class="QWidget" name="configTab">
+         <attribute name="title"><string>Configuration</string></attribute>
+         <layout class="QVBoxLayout">
+          <item>
+           <layout class="QHBoxLayout">
+           <item>
+            <widget class="QLabel" name="downloadJobLabel">
+             <property name="text">
+              <string>Project ID:</string>
+             </property>
+            </widget>
+           </item>
+            <item>
+             <widget class="QLineEdit" name="projectId"></widget>
+            </item>
+           </layout>
+          </item>
+
+          <item>
+           <layout class="QHBoxLayout">
+            <item>
+             <widget class="QLabel">
+              <property name="text">
+               <string>Project API key:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="projectApiKey"></widget>
+            </item>
+           </layout>
+          </item>
+
+          <item>
+           <layout class="QHBoxLayout">
+            <item>
+             <widget class="QLabel">
+              <property name="text">
+               <string>Download file path:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="filePath"></widget>
+            </item>
+           </layout>
+          </item>
+
+         </layout>
+        </widget>
+
         <widget class="QWidget" name="jobsTab">
          <attribute name="title">
           <string>UP42 Jobs</string>
@@ -184,9 +236,6 @@
            </widget>
           </item>
          </layout>
-        </widget>
-        <widget class="QWidget" name="configTab">
-         <attribute name="title"><string>Configuration</string></attribute>
         </widget>
        </widget>
       </item>

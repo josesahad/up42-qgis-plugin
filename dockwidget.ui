@@ -67,14 +67,14 @@
                                             <widget class="QLineEdit" name="projectApiKey"/>
                                         </item>
                                         <item row="2" column="0">
-                                            <widget class="QLabel" name="dataFolderLabel">
+                                            <widget class="QLabel" name="downloadFolderLabel">
                                                 <property name="text">
-                                                    <string>Data folder</string>
+                                                    <string>Download folder</string>
                                                 </property>
                                             </widget>
                                         </item>
                                         <item row="2" column="1">
-                                            <widget class="QLineEdit" name="dataFolder"/>
+                                            <widget class="QLineEdit" name="downloadFolder"/>
                                         </item>
                                     </layout>
                                 </widget>

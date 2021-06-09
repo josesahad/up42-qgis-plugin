@@ -3,6 +3,8 @@ The main module
 """
 import os
 
+from qgis.core import QgsMessageLog
+
 from qgis.core import QgsProject, QgsRasterLayer, QgsVectorLayer, QgsMessageLog
 from PyQt5.QtCore import Qt, QDate
 from PyQt5.QtGui import QIcon, QTextCharFormat
@@ -12,7 +14,7 @@ from .constants import MessageType, CrsType, ImagePriority, ImageFormat, BaseUrl
     AVAILABLE_SERVICE_TYPES, COVERAGE_MAX_BBOX_SIZE, ACTION_COOLDOWN, VECTOR_LAYER_COLOR_OPACITY
 from .dockwidget import UP42DockWidget
 from .settings import Settings
-
+from qgis.core import Qgis
 
 PLUGIN_NAME="UP42"
 
@@ -96,6 +98,24 @@ class UP42Plugin:
             self.iface.removeToolBarIcon(action)
         del self.toolbar
 
+    def update_project_id(self):
+        widget_text = self.dockwidget.projectId.text()
+        self.settings.project_id = widget_text
+        self.settings.sync()
+        QgsMessageLog.logMessage(f"update_project_id: {widget_text}", level=Qgis.Info)
+
+    def update_project_api_key(self):
+        widget_text = self.dockwidget.projectApiKey.text()
+        self.settings.project_api_key = widget_text
+        self.settings.sync()
+        QgsMessageLog.logMessage(f"update_project_api_key: {widget_text}", level=Qgis.Info)
+
+    def update_download_folder(self):
+        widget_text = self.dockwidget.downloadFolder.text()
+        self.settings.download_folder = widget_text
+        self.settings.sync()
+        QgsMessageLog.logMessage(f"update_download_folder: {widget_text}", level=Qgis.Info)
+
     def run(self):
         """ It loads and starts the plugin and binds all UI actions.
         """
@@ -106,6 +126,10 @@ class UP42Plugin:
         self.dockwidget.setWindowTitle('{} plugin v{}'.format("UP42", "1.0.0"))
         self.initialize_ui()
         self.dockwidget.downloadJobPushButton.clicked.connect(self.download_layer)
+
+        self.dockwidget.projectId.editingFinished.connect(self.update_project_id)
+        self.dockwidget.projectApiKey.editingFinished.connect(self.update_project_api_key)
+        self.dockwidget.downloadFolder.editingFinished.connect(self.update_download_folder)
 
         # Login widget
         # self.dockwidget.serviceUrlLineEdit.editingFinished.connect(self.validate_base_url)
@@ -174,6 +198,10 @@ class UP42Plugin:
     def initialize_ui(self):
         """ Initializes and resets entire UI
         """
+        self.dockwidget.projectId.setText(self.settings.project_id)
+        self.dockwidget.projectApiKey.setText(self.settings.project_api_key)
+        self.dockwidget.downloadFolder.setText(self.settings.download_folder)
+
         # self.dockwidget.serviceUrlLineEdit.setText(self.settings.base_url)
         # self.dockwidget.clientIdLineEdit.setText(self.settings.client_id)
         # self.dockwidget.clientSecretLineEdit.setText(self.settings.client_secret)

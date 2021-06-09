@@ -100,22 +100,16 @@ class UP42Plugin:
         del self.toolbar
 
     def update_project_id(self):
-        widget_text = self.dockwidget.projectId.text()
-        self.settings.project_id = widget_text
-        self.settings.sync()
-        QgsMessageLog.logMessage(f"update_project_id: {widget_text}", level=Qgis.Info)
+        print('update_project_id()')
+        self.settings.project_id = self.dockwidget.projectId.text()
 
     def update_project_api_key(self):
-        widget_text = self.dockwidget.projectApiKey.text()
-        self.settings.project_api_key = widget_text
-        self.settings.sync()
-        QgsMessageLog.logMessage(f"update_project_api_key: {widget_text}", level=Qgis.Info)
+        print('update_project_api_key()')
+        self.settings.project_api_key = self.dockwidget.projectApiKey.text()
 
     def update_download_folder(self):
-        widget_text = self.dockwidget.downloadFolder.text()
-        self.settings.download_folder = widget_text
-        self.settings.sync()
-        QgsMessageLog.logMessage(f"update_download_folder: {widget_text}", level=Qgis.Info)
+        print('update_download_folder()')
+        self.settings.download_folder = self.dockwidget.downloadFolder.text()
 
     def run(self):
         """ It loads and starts the plugin and binds all UI actions.

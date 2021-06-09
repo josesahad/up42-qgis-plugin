@@ -1,4 +1,10 @@
-# QGIS Minimalist Plugin Skeleton
+# UP42 QGIS plugin prototype
+
+* `pip3 install requirements-dev.txt` to install the dependencies necessary while developing
+
+
+
+## QGIS Minimalist Plugin Skeleton
 
 In various QGIS plugin tutorials you are told to use _Plugin Builder_ tool to create a skeleton for your plugin.
 It is surely helpful as it helps you kickstart your plugin with stuff like UI designer file, auto tests, docs, i18n, scripts and so on.
@@ -6,14 +12,14 @@ It is surely helpful as it helps you kickstart your plugin with stuff like UI de
 This QGIS plugin is the complete opposite of a plugin built with _Plugin Builder_: it is a plugin skeleton cut down
 to the bare minimum that still results in a valid QGIS plugin. It consists of two files only: a text file with metadata and a Python file with a bit of code.
 
-## Why?
+### Why?
 
 For educational purposes, it is useful to understand how a very basic plugin could look like.
 
 For practical reasons, it is sometimes useful to create a single purpose plugin with the least amount of extra bells and whistles,
 so the code that actually does something is not hidden among generated boilerplate code.
 
-## How to use it?
+### How to use it?
 
 1. Create a new python plugin directory
   * e.g. Linux ```~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/minimal```

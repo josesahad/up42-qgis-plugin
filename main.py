@@ -37,7 +37,8 @@ class UP42Plugin:
     def download_layer(self):
         """ Uploads an image into QGis
         """
-        path_image = "/Users/thais.bendixen/Desktop/2e18f92e-ec90-4517-ab31-eda7a3019715_ms.tif"
+        # path_image = "/Users/thais.bendixen/Desktop/2e18f92e-ec90-4517-ab31-eda7a3019715_ms.tif"
+        path_image = self.dockwidget.outputImagePath.text()
 
         # get the path to a tif file  e.g. /home/project/data/srtm.tif
         path_to_tif = path_image

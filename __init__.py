@@ -12,6 +12,13 @@
 from PyQt5.QtWidgets import QAction, QMessageBox
 
 def classFactory(iface):
+    from .utils import ensure_import
+
+    # ensure_import('up42-py')
+    ensure_import('up42_py')
+    ensure_import('geojson')
+    ensure_import('geopandas')
+
     from .main import UP42Plugin
     return UP42Plugin(iface)
     # return MinimalPlugin(iface)

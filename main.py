@@ -3,8 +3,10 @@ The main module
 """
 import os
 
-from qgis.core import QgsMessageLog
+import up42
+from pathlib import Path
 
+from qgis.core import QgsMessageLog
 from qgis.core import QgsProject, QgsRasterLayer, QgsVectorLayer, QgsMessageLog
 from PyQt5.QtCore import Qt, QDate
 from PyQt5.QtGui import QIcon, QTextCharFormat
@@ -34,21 +36,6 @@ class UP42Plugin:
 
     # ICON_PATH = ':/plugins/UP42/favicon.ico'
 
-    def download_layer(self):
-        """ Uploads an image into QGis
-        """
-        # path_image = "/Users/thais.bendixen/Desktop/2e18f92e-ec90-4517-ab31-eda7a3019715_ms.tif"
-        path_image = self.dockwidget.outputImagePath.text()
-
-        # get the path to a tif file  e.g. /home/project/data/srtm.tif
-        path_to_tif = path_image
-        output_layer = QgsRasterLayer(path_to_tif, "SRTM layer name")
-        if not output_layer.isValid():
-            print("Layer failed to load!")
-
-        QgsProject.instance().addMapLayer(output_layer)
-
-
     def __init__(self, iface):
         """ Called by QGIS at the beginning when you open QGIS or when the plugin is enabled in the
         Plugin Manager.
@@ -66,11 +53,48 @@ class UP42Plugin:
 
         self._default_layer_selection_event = None
 
+    @staticmethod
+    def download_qgis_layer(out_path: str):
+        """ Uploads an image into QGis
+        """
+        # path_image = "/Users/thais.bendixen/Desktop/2e18f92e-ec90-4517-ab31-eda7a3019715_ms.tif"
+        # path_image = self.dockwidget.outputImagePath.text()
+
+        # get the path to a tif file  e.g. /home/project/data/srtm.tif
+        path_to_tif = path_image
+        output_layer = QgsRasterLayer(path_to_tif, "SRTM layer name")
+        if not output_layer.isValid():
+            print("Layer failed to load!")
+
+        QgsProject.instance().addMapLayer(output_layer)
+
+    def get_job_results(self):
+        """ Uploads an image into QGis
+        """
+        up42.authenticate(project_id=Settings().project_id,
+                          project_api_key=Settings().project_api_key)
+        project = up42.initialize_project()
+        jobs_collection = project.get_jobs(return_json=False, test_jobs=False, real_jobs=True)
+
+        # temporary: get first job
+        first_job = jobs_collection[0]
+
+        # TODO for vosulaizing existing jobs and job ids later
+        # job_dict = first_job.info
+        # job_id = job_dict["id"]
+
+        # download result job
+        out_dir = Path("/Users/thais.bendixen/Desktop")
+        out_path = first_job.download_results(self, output_directory=out_dir, unpacking=True)
+
+        self.download_qgis_layer(out_path=out_path[0]) # TODO attention several paths are output
+
+
     def initGui(self):
         """ This method is called by QGIS when the main GUI starts up or when the plugin is enabled in the
         Plugin Manager.
         """
-        action = QAction('UP42', self.iface.mainWindow())
+        action = QAction('../UP42', self.iface.mainWindow())
         
         # icon = QIcon(self.ICON_PATH)
         # bold_plugin_name = '<b>{}</b>'.format("UP42")
@@ -120,11 +144,12 @@ class UP42Plugin:
         self.dockwidget = UP42DockWidget()
         self.dockwidget.setWindowTitle('{} plugin v{}'.format("UP42", "1.0.0"))
         self.initialize_ui()
-        self.dockwidget.downloadJobPushButton.clicked.connect(self.download_layer)
 
         self.dockwidget.projectId.editingFinished.connect(self.update_project_id)
         self.dockwidget.projectApiKey.editingFinished.connect(self.update_project_api_key)
         self.dockwidget.downloadFolder.editingFinished.connect(self.update_download_folder)
+
+        self.dockwidget.downloadJobPushButton.clicked.connect(self.get_job_results)
 
         # Login widget
         # self.dockwidget.serviceUrlLineEdit.editingFinished.connect(self.validate_base_url)

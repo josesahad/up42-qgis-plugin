@@ -31,3 +31,10 @@ Now you should see a "Go!" button in your "Plugins" toolbar (make sure it is ena
 
 The next step is to change the metadata (e.g. plugin title and description) in ```metadata.txt``` and
 start adding your own code to ```__init__.py```. Have fun!
+
+
+# internal 
+# create external directory (check if you are in correct directory )
+mkdir ./external
+# create whl files in external directory (see esnure import method)
+pip download -d ./external --no-deps -r requirements-dev.txt

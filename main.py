@@ -20,6 +20,9 @@ from .dockwidget import UP42DockWidget
 from .settings import Settings
 from qgis.core import Qgis
 
+from PyQt5.QtWidgets import QAction, QMessageBox
+
+
 PLUGIN_NAME="UP42"
 
 
@@ -90,6 +93,24 @@ class UP42Plugin:
         out_path = first_job.download_results(output_directory=temp_dir_path, unpacking=True)
 
         self.download_qgis_layer(out_path=out_path[0]) # TODO attention several paths are output
+
+    def update_jobs_combo(self, job_index=None):
+        # if job_index is not None:
+        #      self.dockwidget.jobsComboBox.setCurrentIndex(job_index)
+    
+        # job_index = self.dockwidget.jobsComboBox.currentIndex()
+
+        # up42.authenticate(project_id=self.settings.project_id,
+        #                   project_api_key=self.settings.project_api_key)
+        # project = up42.initialize_project()
+        # jobs_collection = project.get_jobs(return_json=False, test_jobs=False, real_jobs=True)
+
+        # self.dockwidget.jobsComboBox.addItems([j.id for j in jobs_collection]) 
+        # self.dockwidget.jobsComboBox.addItems([[i for i in jobs_collection[x]] for x in jobs_collection.keys()]) 
+        # self.dockwidget.jobsComboBox.addItems([i for i in x.keys()] for x in jobs_collection) 
+        # self.dockwidget.jobsComboBox.addItems(x.keys() for x in jobs_collection)
+        QMessageBox.information(None, 'Letsesss', 'Do something useful here')
+        self.dockwidget.jobsComboBox.addItems(['id', 'id2'])       
 
 
     def initGui(self):
@@ -223,6 +244,9 @@ class UP42Plugin:
         self.dockwidget.projectId.setText(self.settings.project_id)
         self.dockwidget.projectApiKey.setText(self.settings.project_api_key)
         self.dockwidget.downloadFolder.setText(self.settings.download_folder)
+
+        self.dockwidget.jobsComboBox.activated.connect(self.update_jobs_combo)
+
 
         # self.dockwidget.serviceUrlLineEdit.setText(self.settings.base_url)
         # self.dockwidget.clientIdLineEdit.setText(self.settings.client_id)

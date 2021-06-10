@@ -18,6 +18,7 @@ def classFactory(iface):
     ensure_import('up42_py')
     ensure_import('geojson')
     ensure_import('geopandas')
+    ensure_import('pyproj')
 
     from .main import UP42Plugin
     return UP42Plugin(iface)

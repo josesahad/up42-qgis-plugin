@@ -4,3 +4,4 @@ PyQt5-sip==12.9.0
 up42-py
 geojson
 geopandas
+pyproj

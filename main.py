@@ -71,8 +71,8 @@ class UP42Plugin:
     def get_job_results(self):
         """ Uploads an image into QGis
         """
-        up42.authenticate(project_id=Settings().project_id,
-                          project_api_key=Settings().project_api_key)
+        up42.authenticate(project_id=self.settings.project_id,
+                          project_api_key=self.settings.project_api_key)
         project = up42.initialize_project()
         jobs_collection = project.get_jobs(return_json=False, test_jobs=False, real_jobs=True)
 

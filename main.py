@@ -92,7 +92,23 @@ class UP42Plugin:
 
         self.download_qgis_layer(out_path=out_path[0]) # TODO attention several paths are output
 
-    def update_jobs_combo(self, job_index=None):
+    def update_jobs_combo(self):
+        print('update_jobs_combo()')
+
+        up42.authenticate(project_id=self.settings.project_id,
+                          project_api_key=self.settings.project_api_key)
+        project = up42.initialize_project()
+        jobs_collection = project.get_jobs(return_json=False, test_jobs=False, real_jobs=True)
+
+        jobs = []
+        for j in jobs_collection:
+            label = f"{j.info['name']} ({j.job_id})"
+            job_id = j.job_id
+            jobs.append((job_id, label))
+
+        for j in jobs:
+            self.dockwidget.jobsComboBox.addItem(j[0], j[1])
+
         # if job_index is not None:
         #      self.dockwidget.jobsComboBox.setCurrentIndex(job_index)
     
@@ -107,8 +123,10 @@ class UP42Plugin:
         # self.dockwidget.jobsComboBox.addItems([[i for i in jobs_collection[x]] for x in jobs_collection.keys()]) 
         # self.dockwidget.jobsComboBox.addItems([i for i in x.keys()] for x in jobs_collection) 
         # self.dockwidget.jobsComboBox.addItems(x.keys() for x in jobs_collection)
-        QMessageBox.information(None, 'Letsesss', 'Do something useful here')
-        self.dockwidget.jobsComboBox.addItems(['id', 'id2'])       
+
+        # self.dockwidget.jobsComboBox.
+        # QMessageBox.information(None, 'Letsesss', 'Do something useful here')
+        # self.dockwidget.jobsComboBox.addItems(['id', 'id2'])
 
 
     def initGui(self):
@@ -243,7 +261,8 @@ class UP42Plugin:
         self.dockwidget.projectApiKey.setText(self.settings.project_api_key)
         self.dockwidget.downloadFolder.setText(self.settings.download_folder)
 
-        self.dockwidget.jobsComboBox.activated.connect(self.update_jobs_combo)
+        self.update_jobs_combo()
+        # self.dockwidget.jobsComboBox.activated.connect(self.update_jobs_combo)
 
 
         # self.dockwidget.serviceUrlLineEdit.setText(self.settings.base_url)

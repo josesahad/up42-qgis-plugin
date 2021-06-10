@@ -73,27 +73,27 @@ class UP42Plugin:
 
         QgsProject.instance().addMapLayer(output_layer)
 
-    # def get_job_results(self):
-    #     """ Uploads an image into QGis
-    #     """
-    #     up42.authenticate(project_id=self.settings.project_id,
-    #                       project_api_key=self.settings.project_api_key)
-    #     project = up42.initialize_project()
-    #     jobs_collection = project.get_jobs(return_json=False, test_jobs=False, real_jobs=True)
-    #
-    #     # temporary: get first job
-    #     first_job = jobs_collection[0]
-    #
-    #     # TODO for vosulaizing existing jobs and job ids later
-    #     # job_dict = first_job.info
-    #     # job_id = job_dict["id"]
-    #
-    #     # download result job
-    #     temp_dir_path = tempfile.mkdtemp(prefix="output_", dir=self.settings.download_folder)
-    #
-    #     out_path = first_job.download_results(output_directory=temp_dir_path, unpacking=True)
-    #
-    #     self.download_qgis_layer(out_path=out_path[0]) # TODO attention several paths are output
+    def get_job_results(self):
+        """ Uploads an image into QGis
+        """
+        up42.authenticate(project_id=self.settings.project_id,
+                          project_api_key=self.settings.project_api_key)
+        project = up42.initialize_project()
+        jobs_collection = project.get_jobs(return_json=False, test_jobs=False, real_jobs=True)
+
+        # temporary: get first job
+        first_job = jobs_collection[0]
+
+        # TODO for vosulaizing existing jobs and job ids later
+        # job_dict = first_job.info
+        # job_id = job_dict["id"]
+
+        # download result job
+        temp_dir_path = tempfile.mkdtemp(prefix="output_", dir=self.settings.download_folder)
+
+        out_path = first_job.download_results(output_directory=temp_dir_path, unpacking=True)
+
+        self.download_qgis_layer(out_path=out_path[0]) # TODO attention several paths are output
 
     def update_jobs_combo(self):
         print('update_jobs_combo()')
@@ -112,12 +112,6 @@ class UP42Plugin:
         for j in jobs:
             self.dockwidget.jobsComboBox.addItem(j[0], j[1])
 
-        # download result job
-        temp_dir_path = tempfile.mkdtemp(prefix="output_", dir=self.settings.download_folder)
-
-        out_path = clicked_job.download_results(output_directory=temp_dir_path, unpacking=True)
-
-        self.download_qgis_layer(out_path=out_path[0]) # TODO attention several paths are output
 
         # if job_index is not None:
         #      self.dockwidget.jobsComboBox.setCurrentIndex(job_index)

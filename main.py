@@ -91,7 +91,8 @@ class UP42Plugin:
         # download result job
         temp_dir_path = tempfile.mkdtemp(prefix="output_", dir=self.settings.download_folder)
 
-        out_path = first_job.download_results(output_directory=temp_dir_path, unpacking=True)
+        (job_id, job) = self.dockwidget.jobsComboBox.currentData()
+        out_path = job.download_results(output_directory=temp_dir_path, unpacking=True)
 
         self.download_qgis_layer(out_path=out_path[0]) # TODO attention several paths are output
 
@@ -107,7 +108,7 @@ class UP42Plugin:
         for j in jobs_collection:
             label = f"{j.info['name']} ({j.job_id})"
             job_id = j.job_id
-            jobs.append((job_id, label))
+            jobs.append((label, (job_id, j)))
 
         for j in jobs:
             self.dockwidget.jobsComboBox.addItem(j[0], j[1])

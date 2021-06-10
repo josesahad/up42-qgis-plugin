@@ -4,6 +4,8 @@ The main module
 import os
 
 import up42
+import shutil
+import tempfile
 from pathlib import Path
 
 from qgis.core import QgsMessageLog
@@ -83,9 +85,9 @@ class UP42Plugin:
         # job_id = job_dict["id"]
 
         # download result job
-        out_dir = Path("/Users/thais.bendixen/Desktop")
-        out_path = first_job.download_results(output_directory=out_dir, unpacking=True)
-        print(out_path)
+        temp_dir_path = tempfile.mkdtemp(prefix="output_", dir="/Users/thais.bendixen/Desktop")
+
+        out_path = first_job.download_results(output_directory=temp_dir_path, unpacking=True)
 
         self.download_qgis_layer(out_path=out_path[0]) # TODO attention several paths are output
 

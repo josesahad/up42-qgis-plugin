@@ -61,8 +61,7 @@ class UP42Plugin:
         # path_image = self.dockwidget.outputImagePath.text()
 
         # get the path to a tif file  e.g. /home/project/data/srtm.tif
-        path_to_tif = path_image
-        output_layer = QgsRasterLayer(path_to_tif, "SRTM layer name")
+        output_layer = QgsRasterLayer(out_path, "SRTM layer name")
         if not output_layer.isValid():
             print("Layer failed to load!")
 
@@ -85,7 +84,8 @@ class UP42Plugin:
 
         # download result job
         out_dir = Path("/Users/thais.bendixen/Desktop")
-        out_path = first_job.download_results(self, output_directory=out_dir, unpacking=True)
+        out_path = first_job.download_results(output_directory=out_dir, unpacking=True)
+        print(out_path)
 
         self.download_qgis_layer(out_path=out_path[0]) # TODO attention several paths are output
 

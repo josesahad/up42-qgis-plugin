@@ -30,248 +30,98 @@
                 <item row="0" column="0">
                     <layout class="QVBoxLayout" name="mainVertical">
                         <item>
-                            <widget class="QTabWidget" name="tabWidget">
-                                <property name="sizePolicy">
-                                    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                                        <horstretch>0</horstretch>
-                                        <verstretch>0</verstretch>
-                                    </sizepolicy>
-                                </property>
-                                <property name="currentIndex">
-                                    <number>1</number>
-                                </property>
 
-                                <widget class="QWidget" name="configTab">
-                                    <attribute name="title">
-                                        <string>Configuration</string>
-                                    </attribute>
-                                    <layout class="QFormLayout" name="formLayout">
-                                        <item row="0" column="0">
-                                            <widget class="QLabel" name="projectIDLabel">
-                                                <property name="text">
-                                                    <string>Project ID</string>
-                                                </property>
-                                            </widget>
-                                        </item>
-                                        <item row="0" column="1">
-                                            <widget class="QLineEdit" name="projectId"/>
-                                        </item>
-                                        <item row="1" column="0">
-                                            <widget class="QLabel" name="projectAPIKeyLabel">
-                                                <property name="text">
-                                                    <string>Project API key</string>
-                                                </property>
-                                            </widget>
-                                        </item>
-                                        <item row="1" column="1">
-                                            <widget class="QLineEdit" name="projectApiKey"/>
-                                        </item>
-                                        <item row="2" column="0">
-                                            <widget class="QLabel" name="downloadFolderLabel">
-                                                <property name="text">
-                                                    <string>Download folder</string>
-                                                </property>
-                                            </widget>
-                                        </item>
-                                        <item row="2" column="1">
-                                            <widget class="QLineEdit" name="downloadFolder"/>
-                                        </item>
-                                    </layout>
-                                </widget>
-
-                                <widget class="QWidget" name="jobsTab">
-                                    <attribute name="title">
-                                        <string>UP42 Jobs</string>
-                                    </attribute>
-                                    <layout class="QGridLayout" name="gridLayout_2">
-                                        <property name="leftMargin">
-                                            <number>5</number>
+                                    <widget class="QTabWidget" name="tabWidget">
+                                        <property name="geometry">
+                                            <rect>
+                                                <x>1</x>
+                                                <y>1</y>
+                                                <width>605</width>
+                                                <height>185</height>
+                                            </rect>
                                         </property>
-                                        <property name="topMargin">
-                                            <number>5</number>
+                                        <property name="sizePolicy">
+                                            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                                                <horstretch>0</horstretch>
+                                                <verstretch>0</verstretch>
+                                            </sizepolicy>
                                         </property>
-                                        <property name="rightMargin">
-                                            <number>5</number>
+                                        <property name="currentIndex">
+                                            <number>1</number>
                                         </property>
-                                        <property name="bottomMargin">
-                                            <number>5</number>
-                                        </property>
-                                        <item row="0" column="0" rowspan="2">
-                                            <widget class="QScrollArea" name="createScrollArea">
-                                                <property name="sizePolicy">
-                                                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                                                        <horstretch>0</horstretch>
-                                                        <verstretch>0</verstretch>
-                                                    </sizepolicy>
+                                        <widget class="QWidget" name="configTab">
+                                            <attribute name="title">
+                                                <string>Configuration</string>
+                                            </attribute>
+                                            <layout class="QFormLayout" name="formLayout">
+                                                <item row="0" column="0">
+                                                    <widget class="QLabel" name="projectIDLabel">
+                                                        <property name="text">
+                                                            <string>Project ID</string>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                                <item row="0" column="1">
+                                                    <widget class="QLineEdit" name="projectId"/>
+                                                </item>
+                                                <item row="1" column="0">
+                                                    <widget class="QLabel" name="projectAPIKeyLabel">
+                                                        <property name="text">
+                                                            <string>Project API key</string>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                                <item row="1" column="1">
+                                                    <widget class="QLineEdit" name="projectApiKey"/>
+                                                </item>
+                                                <item row="2" column="0">
+                                                    <widget class="QLabel" name="downloadFolderLabel">
+                                                        <property name="text">
+                                                            <string>Download folder</string>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                                <item row="2" column="1">
+                                                    <widget class="QLineEdit" name="downloadFolder"/>
+                                                </item>
+                                            </layout>
+                                        </widget>
+                                        <widget class="QWidget" name="tab">
+                                            <attribute name="title">
+                                                <string>Page</string>
+                                            </attribute>
+                                            <widget class="QWidget" name="formLayoutWidget">
+                                                <property name="geometry">
+                                                    <rect>
+                                                        <x>10</x>
+                                                        <y>10</y>
+                                                        <width>581</width>
+                                                        <height>141</height>
+                                                    </rect>
                                                 </property>
-                                                <property name="verticalScrollBarPolicy">
-                                                    <enum>Qt::ScrollBarAsNeeded</enum>
-                                                </property>
-                                                <property name="horizontalScrollBarPolicy">
-                                                    <enum>Qt::ScrollBarAsNeeded</enum>
-                                                </property>
-                                                <property name="widgetResizable">
-                                                    <bool>true</bool>
-                                                </property>
-                                                <widget class="QWidget" name="scrollAreaWidgetContents_2">
-                                                    <property name="geometry">
-                                                        <rect>
-                                                            <x>0</x>
-                                                            <y>0</y>
-                                                            <width>833</width>
-                                                            <height>440</height>
-                                                        </rect>
-                                                    </property>
-                                                    <layout class="QGridLayout" name="gridLayout_4">
-                                                        <item row="0" column="0">
-                                                            <widget class="QLabel" name="jobsLabel">
-                                                                <property name="text">
-                                                                    <string>Jobs</string>
-                                                                </property>
-                                                            </widget>
-                                                        </item>
-                                                        <item row="0" column="1">
-                                                            <widget class="QComboBox" name="jobsComboBox">
-                                                                <property name="minimumSize">
-                                                                    <size>
-                                                                        <width>400</width>
-                                                                        <height>0</height>
-                                                                    </size>
-                                                                </property>
-                                                                <property name="maximumSize">
-                                                                    <size>
-                                                                        <width>400</width>
-                                                                        <height>16777215</height>
-                                                                    </size>
-                                                                </property>
-                                                            </widget>
-                                                        </item>
-                                                    </layout>
-                                                </widget>
-                                            </widget>
-                                        </item>
-                                        <item row="2" column="0" alignment="Qt::AlignLeft">
-                                            <widget class="QWidget" name="actionTab" native="true">
-                                                <property name="sizePolicy">
-                                                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                                                        <horstretch>0</horstretch>
-                                                        <verstretch>0</verstretch>
-                                                    </sizepolicy>
-                                                </property>
-                                                <property name="minimumSize">
-                                                    <size>
-                                                        <width>0</width>
-                                                        <height>80</height>
-                                                    </size>
-                                                </property>
-                                                <property name="maximumSize">
-                                                    <size>
-                                                        <width>16777215</width>
-                                                        <height>80</height>
-                                                    </size>
-                                                </property>
-                                                <property name="focusPolicy">
-                                                    <enum>Qt::StrongFocus</enum>
-                                                </property>
-                                                <layout class="QGridLayout" name="gridLayout_7">
+                                                <layout class="QFormLayout" name="formLayout_2">
                                                     <item row="0" column="0">
-                                                        <widget class="QLabel" name="outputImagePathLabel">
-                                                            <property name="sizePolicy">
-                                                                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                                                                    <horstretch>0</horstretch>
-                                                                    <verstretch>0</verstretch>
-                                                                </sizepolicy>
-                                                            </property>
-                                                            <property name="minimumSize">
-                                                                <size>
-                                                                    <width>167</width>
-                                                                    <height>0</height>
-                                                                </size>
-                                                            </property>
-                                                            <property name="maximumSize">
-                                                                <size>
-                                                                    <width>167</width>
-                                                                    <height>16777215</height>
-                                                                </size>
-                                                            </property>
+                                                        <widget class="QLabel" name="chooseJobLabel">
                                                             <property name="text">
-                                                                <string>Output Image Path</string>
+                                                                <string>Choose job</string>
                                                             </property>
                                                         </widget>
                                                     </item>
                                                     <item row="0" column="1">
-                                                        <widget class="QLineEdit" name="outputImagePath">
-                                                            <property name="sizePolicy">
-                                                                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                                                                    <horstretch>0</horstretch>
-                                                                    <verstretch>0</verstretch>
-                                                                </sizepolicy>
-                                                            </property>
-                                                            <property name="minimumSize">
-                                                                <size>
-                                                                    <width>167</width>
-                                                                    <height>0</height>
-                                                                </size>
-                                                            </property>
-                                                            <property name="maximumSize">
-                                                                <size>
-                                                                    <width>167</width>
-                                                                    <height>16777215</height>
-                                                                </size>
-                                                            </property>
-                                                        </widget>
+                                                        <widget class="QComboBox" name="jobsComboBox"/>
                                                     </item>
-                                                    <item row="1" column="0">
-                                                        <widget class="QLabel" name="downloadJobLabel">
-                                                            <property name="sizePolicy">
-                                                                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                                                                    <horstretch>0</horstretch>
-                                                                    <verstretch>0</verstretch>
-                                                                </sizepolicy>
-                                                            </property>
-                                                            <property name="minimumSize">
-                                                                <size>
-                                                                    <width>167</width>
-                                                                    <height>0</height>
-                                                                </size>
-                                                            </property>
-                                                            <property name="maximumSize">
-                                                                <size>
-                                                                    <width>167</width>
-                                                                    <height>16777215</height>
-                                                                </size>
-                                                            </property>
-                                                            <property name="text">
-                                                                <string>Download</string>
-                                                            </property>
-                                                        </widget>
-                                                    </item>
-                                                    <item row="1" column="1">
+                                                    <item row="1" column="0" colspan="2">
                                                         <widget class="QPushButton" name="downloadJobPushButton">
-                                                            <property name="minimumSize">
-                                                                <size>
-                                                                    <width>400</width>
-                                                                    <height>0</height>
-                                                                </size>
-                                                            </property>
-                                                            <property name="maximumSize">
-                                                                <size>
-                                                                    <width>400</width>
-                                                                    <height>16777215</height>
-                                                                </size>
-                                                            </property>
                                                             <property name="text">
                                                                 <string>Download</string>
                                                             </property>
                                                         </widget>
                                                     </item>
                                                 </layout>
-                                                <zorder>downloadJobLabel</zorder>
                                             </widget>
-                                        </item>
-                                    </layout>
-                                </widget>
-                            </widget>
+                                        </widget>
+                                    </widget>
+
                         </item>
                     </layout>
                 </item>

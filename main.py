@@ -94,8 +94,8 @@ class UP42Plugin:
 
     def update_jobs_combo(self):
         print('update_jobs_combo()')
-        # jobs = self._fetch_jobs()
-        jobs = []
+        jobs = self._fetch_jobs()
+        # jobs = []
         for j in jobs:
             label = f"{j.name} ({j.id})"
             self.dockwidget.jobsComboBox.addItem(label, j.instance)

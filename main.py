@@ -155,8 +155,6 @@ class UP42Plugin:
         self.dockwidget.setWindowTitle('{} plugin v{}'.format("UP42", "1.0.0"))
         self.initialize_ui()
 
-        self.dockwidget.downloadJobPushButton.clicked.connect(self.get_job_results)
-
         # Close event
         self.dockwidget.closingPlugin.connect(self.on_close_plugin)
 
@@ -171,12 +169,13 @@ class UP42Plugin:
         self.dockwidget.projectApiKey.editingFinished.connect(self.update_project_api_key)
         self.dockwidget.downloadFolder.editingFinished.connect(self.update_download_folder)
 
+        self.dockwidget.fetchJobsPushButton.clicked.connect(self.update_jobs_combo())
+        self.dockwidget.downloadJobPushButton.clicked.connect(self.get_job_results)
+
         # Set field content
         self.dockwidget.projectId.setText(self.settings.project_id)
         self.dockwidget.projectApiKey.setText(self.settings.project_api_key)
         self.dockwidget.downloadFolder.setText(self.settings.download_folder)
-
-        self.update_jobs_combo()
 
     def on_close_plugin(self):
         """ Cleanup necessary items here when a close event on the dockwidget is triggered

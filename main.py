@@ -13,6 +13,8 @@ from qgis.core import QgsProject, QgsRasterLayer
 from .dockwidget import UP42DockWidget
 from .settings import Settings
 
+import os.path
+
 PLUGIN_NAME = "UP42"
 
 
@@ -79,7 +81,10 @@ class UP42Plugin:
         job = up42.initialize_job(job_id)
         out_path = job.download_results(output_directory=temp_dir_path, unpacking=True)
 
-        self.download_qgis_layer(out_path=out_path[0], name_layer=job_id)  # TODO attention several paths are output
+        for file_path in out_path:
+            file_name = os.path.basename(file_path)
+            if file_name.endswith(".tif") or file_name.endswith(".tiff"):
+                self.download_qgis_layer(out_path=file_path, name_layer=f"{job_id} ({file_name})")
 
     def _fetch_jobs(self):
         up42.authenticate(project_id=self.settings.project_id,

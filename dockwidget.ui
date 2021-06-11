@@ -88,7 +88,7 @@
                                         </widget>
                                         <widget class="QWidget" name="tab">
                                             <attribute name="title">
-                                                <string>Page</string>
+                                                <string>Job result</string>
                                             </attribute>
                                             <widget class="QWidget" name="formLayoutWidget">
                                                 <property name="geometry">

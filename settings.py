@@ -42,7 +42,7 @@ class Settings(QObject):
             path = self._get_store_path(field)
             value = getattr(self, field)
             self.q_settings.setValue(path, value)
-            print(f"setting set: {path}={value}")
+            # print(f"setting set: {path}={value}")
 
     def _get_store_path(self, parameter_name):
         """ Provides a location of the parameter in the local store

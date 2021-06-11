@@ -60,9 +60,6 @@ class UP42Plugin:
     def download_qgis_layer(out_path: str, name_layer: str = "Layer"):
         """ Uploads an image into QGis
         """
-        # path_image = "/Users/thais.bendixen/Desktop/2e18f92e-ec90-4517-ab31-eda7a3019715_ms.tif"
-        # path_image = self.dockwidget.outputImagePath.text()
-
         # get the path to a tif file  e.g. /home/project/data/srtm.tif
         # TODO change name
         output_layer = QgsRasterLayer(out_path, name_layer)

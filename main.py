@@ -169,7 +169,7 @@ class UP42Plugin:
         self.dockwidget.projectApiKey.editingFinished.connect(self.update_project_api_key)
         self.dockwidget.downloadFolder.editingFinished.connect(self.update_download_folder)
 
-        self.dockwidget.fetchJobsPushButton.clicked.connect(self.update_jobs_combo())
+        self.dockwidget.fetchJobsPushButton.clicked.connect(self.update_jobs_combo)
         self.dockwidget.downloadJobPushButton.clicked.connect(self.get_job_results)
 
         # Set field content

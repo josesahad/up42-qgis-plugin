@@ -14,118 +14,100 @@
             <string>UP42 plugin</string>
         </property>
         <widget class="QWidget" name="dockWidgetContents">
-            <layout class="QGridLayout" name="gridLayout">
-                <property name="leftMargin">
-                    <number>1</number>
-                </property>
-                <property name="topMargin">
-                    <number>1</number>
-                </property>
-                <property name="rightMargin">
-                    <number>1</number>
-                </property>
-                <property name="bottomMargin">
-                    <number>1</number>
-                </property>
-                <item row="0" column="0">
-                    <layout class="QVBoxLayout" name="mainVertical">
-                        <item>
 
-                                    <widget class="QTabWidget" name="tabWidget">
-                                        <property name="geometry">
-                                            <rect>
-                                                <x>1</x>
-                                                <y>1</y>
-                                                <width>605</width>
-                                                <height>185</height>
-                                            </rect>
+                    <widget class="QTabWidget" name="tabWidget">
+                        <property name="geometry">
+                            <rect>
+                                <x>1</x>
+                                <y>1</y>
+                                <width>827</width>
+                                <height>257</height>
+                            </rect>
+                        </property>
+                        <property name="currentIndex">
+                            <number>1</number>
+                        </property>
+                        <widget class="QWidget" name="configTab">
+                            <attribute name="title">
+                                <string>Configuration</string>
+                            </attribute>
+                            <layout class="QFormLayout" name="formLayout">
+                                <item row="0" column="0">
+                                    <widget class="QLabel" name="projectIDLabel">
+                                        <property name="text">
+                                            <string>Project ID</string>
                                         </property>
-                                        <property name="sizePolicy">
-                                            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                                                <horstretch>0</horstretch>
-                                                <verstretch>0</verstretch>
-                                            </sizepolicy>
-                                        </property>
-                                        <property name="currentIndex">
-                                            <number>1</number>
-                                        </property>
-                                        <widget class="QWidget" name="configTab">
-                                            <attribute name="title">
-                                                <string>Configuration</string>
-                                            </attribute>
-                                            <layout class="QFormLayout" name="formLayout">
-                                                <item row="0" column="0">
-                                                    <widget class="QLabel" name="projectIDLabel">
-                                                        <property name="text">
-                                                            <string>Project ID</string>
-                                                        </property>
-                                                    </widget>
-                                                </item>
-                                                <item row="0" column="1">
-                                                    <widget class="QLineEdit" name="projectId"/>
-                                                </item>
-                                                <item row="1" column="0">
-                                                    <widget class="QLabel" name="projectAPIKeyLabel">
-                                                        <property name="text">
-                                                            <string>Project API key</string>
-                                                        </property>
-                                                    </widget>
-                                                </item>
-                                                <item row="1" column="1">
-                                                    <widget class="QLineEdit" name="projectApiKey"/>
-                                                </item>
-                                                <item row="2" column="0">
-                                                    <widget class="QLabel" name="downloadFolderLabel">
-                                                        <property name="text">
-                                                            <string>Download folder</string>
-                                                        </property>
-                                                    </widget>
-                                                </item>
-                                                <item row="2" column="1">
-                                                    <widget class="QLineEdit" name="downloadFolder"/>
-                                                </item>
-                                            </layout>
-                                        </widget>
-                                        <widget class="QWidget" name="tab">
-                                            <attribute name="title">
-                                                <string>Job result</string>
-                                            </attribute>
-                                            <widget class="QWidget" name="formLayoutWidget">
-                                                <property name="geometry">
-                                                    <rect>
-                                                        <x>10</x>
-                                                        <y>10</y>
-                                                        <width>581</width>
-                                                        <height>141</height>
-                                                    </rect>
-                                                </property>
-                                                <layout class="QFormLayout" name="formLayout_2">
-                                                    <item row="0" column="0">
-                                                        <widget class="QLabel" name="chooseJobLabel">
-                                                            <property name="text">
-                                                                <string>Choose job</string>
-                                                            </property>
-                                                        </widget>
-                                                    </item>
-                                                    <item row="0" column="1">
-                                                        <widget class="QComboBox" name="jobsComboBox"/>
-                                                    </item>
-                                                    <item row="1" column="0" colspan="2">
-                                                        <widget class="QPushButton" name="downloadJobPushButton">
-                                                            <property name="text">
-                                                                <string>Download</string>
-                                                            </property>
-                                                        </widget>
-                                                    </item>
-                                                </layout>
-                                            </widget>
-                                        </widget>
                                     </widget>
+                                </item>
+                                <item row="0" column="1">
+                                    <widget class="QLineEdit" name="projectId"/>
+                                </item>
+                                <item row="1" column="0">
+                                    <widget class="QLabel" name="projectAPIKeyLabel">
+                                        <property name="text">
+                                            <string>Project API key</string>
+                                        </property>
+                                    </widget>
+                                </item>
+                                <item row="1" column="1">
+                                    <widget class="QLineEdit" name="projectApiKey"/>
+                                </item>
+                                <item row="2" column="0">
+                                    <widget class="QLabel" name="downloadFolderLabel">
+                                        <property name="text">
+                                            <string>Download folder</string>
+                                        </property>
+                                    </widget>
+                                </item>
+                                <item row="2" column="1">
+                                    <widget class="QLineEdit" name="downloadFolder"/>
+                                </item>
+                            </layout>
+                        </widget>
+                        <widget class="QWidget" name="tab">
+                            <attribute name="title">
+                                <string>Job result</string>
+                            </attribute>
+                            <widget class="QWidget" name="formLayoutWidget">
+                                <property name="geometry">
+                                    <rect>
+                                        <x>10</x>
+                                        <y>10</y>
+                                        <width>581</width>
+                                        <height>141</height>
+                                    </rect>
+                                </property>
+                                <layout class="QFormLayout" name="formLayout_2">
+                                    <item row="1" column="0">
+                                        <widget class="QLabel" name="chooseJobLabel">
+                                            <property name="text">
+                                                <string>Choose job</string>
+                                            </property>
+                                        </widget>
+                                    </item>
+                                    <item row="1" column="1">
+                                        <widget class="QComboBox" name="jobsComboBox"/>
+                                    </item>
+                                    <item row="0" column="1">
+                                        <widget class="QPushButton" name="fetchJobsPushButton">
+                                            <property name="text">
+                                                <string>Fetch jobs</string>
+                                            </property>
+                                        </widget>
+                                    </item>
+                                    <item row="2" column="1">
+                                        <widget class="QPushButton" name="downloadJobPushButton">
+                                            <property name="text">
+                                                <string>Download</string>
+                                            </property>
+                                        </widget>
+                                    </item>
+                                </layout>
+                            </widget>
+                        </widget>
+                    </widget>
 
-                        </item>
-                    </layout>
-                </item>
-            </layout>
+
         </widget>
     </widget>
     <resources/>

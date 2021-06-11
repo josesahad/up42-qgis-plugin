@@ -74,12 +74,12 @@ class UP42Plugin:
     def get_job_results(self):
         """ Uploads an image into QGis
         """
+        temp_dir_path = tempfile.mkdtemp(prefix="output_", dir=self.settings.download_folder)
+        job_id = self.dockwidget.jobsComboBox.currentData()
+
         up42.authenticate(project_id=self.settings.project_id,
                           project_api_key=self.settings.project_api_key)
-
-        temp_dir_path = tempfile.mkdtemp(prefix="output_", dir=self.settings.download_folder)
-
-        (job_id, job) = self.dockwidget.jobsComboBox.currentData()
+        job = up42.initialize_job(job_id)
         out_path = job.download_results(output_directory=temp_dir_path, unpacking=True)
 
         self.download_qgis_layer(out_path=out_path[0], name_layer=job_id)  # TODO attention several paths are output
@@ -98,7 +98,7 @@ class UP42Plugin:
         # jobs = []
         for j in jobs:
             label = f"{j.name} ({j.id})"
-            self.dockwidget.jobsComboBox.addItem(label, j.instance)
+            self.dockwidget.jobsComboBox.addItem(label, j.id)
 
     def initGui(self):
         """ This method is called by QGIS when the main GUI starts up or when the plugin is enabled in the

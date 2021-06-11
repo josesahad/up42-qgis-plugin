@@ -21,10 +21,17 @@ from .settings import Settings
 from qgis.core import Qgis
 
 from PyQt5.QtWidgets import QAction, QMessageBox
+from dataclasses import dataclass
 
 
 PLUGIN_NAME="UP42"
 
+
+@dataclass
+class Job:
+    id: str
+    name: str
+    instance: object
 
 class UP42Plugin:
     """ The main class defining the high-level plugin logic and interactions with UI
@@ -86,43 +93,20 @@ class UP42Plugin:
 
         self.download_qgis_layer(out_path=out_path[0], name_layer=job_id) # TODO attention several paths are output
 
-    def update_jobs_combo(self):
-        print('update_jobs_combo()')
-
+    def _fetch_jobs(self):
         up42.authenticate(project_id=self.settings.project_id,
                           project_api_key=self.settings.project_api_key)
         project = up42.initialize_project()
         jobs_collection = project.get_jobs(return_json=False, test_jobs=False, real_jobs=True)
 
-        jobs = []
-        for j in jobs_collection:
-            label = f"{j.info['name']} ({j.job_id})"
-            job_id = j.job_id
-            jobs.append((label, (job_id, j)))
+        return [Job(j.job_id, j.info['name'], j) for j in jobs_collection]
 
+    def update_jobs_combo(self):
+        print('update_jobs_combo()')
+        jobs = self._fetch_jobs()
         for j in jobs:
-            self.dockwidget.jobsComboBox.addItem(j[0], j[1])
-
-
-        # if job_index is not None:
-        #      self.dockwidget.jobsComboBox.setCurrentIndex(job_index)
-    
-        # job_index = self.dockwidget.jobsComboBox.currentIndex()
-
-        # up42.authenticate(project_id=self.settings.project_id,
-        #                   project_api_key=self.settings.project_api_key)
-        # project = up42.initialize_project()
-        # jobs_collection = project.get_jobs(return_json=False, test_jobs=False, real_jobs=True)
-
-        # self.dockwidget.jobsComboBox.addItems([j.id for j in jobs_collection]) 
-        # self.dockwidget.jobsComboBox.addItems([[i for i in jobs_collection[x]] for x in jobs_collection.keys()]) 
-        # self.dockwidget.jobsComboBox.addItems([i for i in x.keys()] for x in jobs_collection) 
-        # self.dockwidget.jobsComboBox.addItems(x.keys() for x in jobs_collection)
-
-        # self.dockwidget.jobsComboBox.
-        # QMessageBox.information(None, 'Letsesss', 'Do something useful here')
-        # self.dockwidget.jobsComboBox.addItems(['id', 'id2'])
-
+            label = f"{j.name} ({j.id})"
+            self.dockwidget.jobsComboBox.addItem(label, j.instance)
 
     def initGui(self):
         """ This method is called by QGIS when the main GUI starts up or when the plugin is enabled in the

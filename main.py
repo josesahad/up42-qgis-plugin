@@ -1,30 +1,19 @@
 """
 The main module
 """
-import os
 
-import up42
-import shutil
 import tempfile
-from pathlib import Path
-
-from qgis.core import QgsMessageLog
-from qgis.core import QgsProject, QgsRasterLayer, QgsVectorLayer, QgsMessageLog
-from PyQt5.QtCore import Qt, QDate
-from PyQt5.QtGui import QIcon, QTextCharFormat
-from PyQt5.QtWidgets import QAction, QFileDialog
-
-from .constants import MessageType, CrsType, ImagePriority, ImageFormat, BaseUrl, ExtentType, ServiceType, TimeType, \
-    AVAILABLE_SERVICE_TYPES, COVERAGE_MAX_BBOX_SIZE, ACTION_COOLDOWN, VECTOR_LAYER_COLOR_OPACITY
-from .dockwidget import UP42DockWidget
-from .settings import Settings
-from qgis.core import Qgis
-
-from PyQt5.QtWidgets import QAction, QMessageBox
 from dataclasses import dataclass
 
+import up42
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QAction
+from qgis.core import QgsProject, QgsRasterLayer
 
-PLUGIN_NAME="UP42"
+from .dockwidget import UP42DockWidget
+from .settings import Settings
+
+PLUGIN_NAME = "UP42"
 
 
 @dataclass
@@ -32,6 +21,7 @@ class Job:
     id: str
     name: str
     instance: object
+
 
 class UP42Plugin:
     """ The main class defining the high-level plugin logic and interactions with UI
@@ -44,6 +34,7 @@ class UP42Plugin:
     Any other public method is connected to UI and can be triggered by a user's action in QGIS. Non-public methods are
     the ones that are only called by other methods.
     """
+
     # pylint: disable=too-many-public-methods
 
     # ICON_PATH = ':/plugins/UP42/favicon.ico'
@@ -66,7 +57,7 @@ class UP42Plugin:
         self._default_layer_selection_event = None
 
     @staticmethod
-    def download_qgis_layer(out_path: str, name_layer:str = "Layer"):
+    def download_qgis_layer(out_path: str, name_layer: str = "Layer"):
         """ Uploads an image into QGis
         """
         # path_image = "/Users/thais.bendixen/Desktop/2e18f92e-ec90-4517-ab31-eda7a3019715_ms.tif"
@@ -91,7 +82,7 @@ class UP42Plugin:
         (job_id, job) = self.dockwidget.jobsComboBox.currentData()
         out_path = job.download_results(output_directory=temp_dir_path, unpacking=True)
 
-        self.download_qgis_layer(out_path=out_path[0], name_layer=job_id) # TODO attention several paths are output
+        self.download_qgis_layer(out_path=out_path[0], name_layer=job_id)  # TODO attention several paths are output
 
     def _fetch_jobs(self):
         up42.authenticate(project_id=self.settings.project_id,
@@ -113,7 +104,7 @@ class UP42Plugin:
         Plugin Manager.
         """
         action = QAction('../UP42', self.iface.mainWindow())
-        
+
         # icon = QIcon(self.ICON_PATH)
         # bold_plugin_name = '<b>{}</b>'.format("UP42")
         # action = QAction(icon, bold_plugin_name, self.iface.mainWindow())
@@ -243,7 +234,6 @@ class UP42Plugin:
         self.update_jobs_combo()
         # self.dockwidget.jobsComboBox.activated.connect(self.update_jobs_combo)
 
-
         # self.dockwidget.serviceUrlLineEdit.setText(self.settings.base_url)
         # self.dockwidget.clientIdLineEdit.setText(self.settings.client_id)
         # self.dockwidget.clientSecretLineEdit.setText(self.settings.client_secret)
@@ -277,7 +267,6 @@ class UP42Plugin:
         # self.toggle_extent(self.settings.download_extent_type)
         # self.dockwidget.downloadFolderLineEdit.setText(self.settings.download_folder)
 
-    
     # @action_handler()
     # def update_configuration(self, configuration_index=None):
     #     """ A different configuration has been chosen
